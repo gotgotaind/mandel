@@ -24,6 +24,6 @@ class image{
     int get_l(){ return l; };
     pixel get_p(int x,int y) { return pixels[x+y*l]; };
     void set_p(int x,int y,pixel p) { pixels[x+y*l]=p;};
-    void draw(complex <double> z_min,complex <double> z_max);
-    void write(char * f);
+    void draw(complex <double> z_min,complex <double> z_max,int max_iter);
+    void write(const char * f);
 };
