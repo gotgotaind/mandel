@@ -7,8 +7,8 @@ int main(void){
     int l=640;
     int h=400;
     int max_iter=255;
-    complex z_min=(-2.2,-1.7);
-    complex z_max=(1.2,1.7);
+    complex z_min=complex(-2.2,-1.7);
+    complex z_max=complex(1.2,1.7);
     const char * fn="madel.ppm";
 
     image img=image(l,h);
