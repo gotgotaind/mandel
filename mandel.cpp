@@ -9,7 +9,7 @@ int main(void){
     int max_iter=255;
     complex z_min=complex(-2.2,-1.7);
     complex z_max=complex(1.2,1.7);
-    const char * fn="madel.ppm";
+    const char * fn="mandel.ppm";
 
     image img=image(l,h);
     cout << "Drawing image.\n";

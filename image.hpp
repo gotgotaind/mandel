@@ -14,13 +14,12 @@ class image{
     private:
         int l;
         int h;
-
-    public: 
-        pixel* pixels;
+        unique_ptr<pixel[]> pixels;
+    public:       
         image(int _l, int _h){
             l=_l;
             h=_h;
-            pixels=new pixel[h*l];
+            pixels=make_unique<pixel[]>(h*l);
         } 
         int get_h(){ return h; };
         int get_l(){ return l; };
