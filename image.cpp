@@ -2,6 +2,19 @@
 #include <fstream>
 #include <iostream>
 
+ pixel get_rgb_smooth(int n, int iter_max) {
+
+    
+    double t = n/(double)iter_max;
+ 
+    
+    int r = (int)(9*(1-t)*t*t*t*255);
+    int g = (int)(15*(1-t)*(1-t)*t*t*255);
+    int b =  (int)(8.5*(1-t)*(1-t)*(1-t)*t*255);
+    return pixel{r, g, b};
+}
+
+
 void image::draw(complex <double> z_min,complex <double> z_max, int max_iter){
     complex <double> z;
     for(int x_img=0;x_img<l;x_img++){
@@ -17,8 +30,10 @@ void image::draw(complex <double> z_min,complex <double> z_max, int max_iter){
                 z=z*z+c;
                 iter++;
             }
-            cout << "setting pixel x,y " << x_img << "," << y_img << " c "  << real(c) << "," << imag(c) << " color " << iter << endl;
-            set_p(x_img,y_img,pixel{iter,iter,iter});
+            if ( x_img%100==0 && y_img%100==0 ) {
+                cout << "setting pixel x,y " << x_img << "," << y_img << " c "  << real(c) << "," << imag(c) << " color " << iter << endl;
+            }
+            set_p(x_img,y_img,get_rgb_smooth(iter,max_iter));
         } 
     } 
 }
@@ -27,8 +42,9 @@ void image::write(const char * f) {
     ofstream fs (f); 
     if (fs.is_open ()) {
         fs << "P3\n" << l << " " << h << " 255\n";
+        for (int j = 0; j < h; j++)  { 
         for (int i = 0; i < l; i++) {
-             for (int j = 0; j < h; j++)  {   
+               
                 pixel p = get_p(i,j); 
                 fs << p.r << ' ' << p.g << ' ' << p.b << "\n";
             }
