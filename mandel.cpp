@@ -7,8 +7,8 @@ int main(void){
     int l=640;
     int h=400;
     int max_iter=255;
-    complex <double> z_min=complex(-2.2,-1.7);
-    complex <double> z_max=complex(1.2,1.7);
+    complex <double> z_min=complex<double>(-2.2,-1.7);
+    complex <double> z_max=complex<double>(1.2,1.7);
     const char * fn="mandel.ppm";
 
     image img=image(l,h);
